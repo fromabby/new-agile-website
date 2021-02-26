@@ -22,7 +22,10 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
     const dd = String(today.getDate()).padStart(2, '0');
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const yyyy = today.getFullYear(); 
-    const hrs = String(today.getHours()).padStart(2,'0');
+    let hrs = String(today.getHours() + 8).padStart(2,'0');
+    if (hrs >=24) {
+      hrs = hrs-24
+    };
     const minutes = String(today.getMinutes()).padStart(2,'0');
     const todayDate = mm + '/' + dd + '/' + yyyy;
     const todayTime = hrs +':'+ minutes;
