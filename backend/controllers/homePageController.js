@@ -15,7 +15,7 @@ exports.newHome = catchAsyncErrors ( async(req,res,next) => {
 
 // get homepage details => /api/v1/homepage
 exports.getHomePage = catchAsyncErrors (async(req, res,next) =>{
-    const homePage = await HomePage.findById('6038ff331155b2369c527b6e');
+    const homePage = await HomePage.findById('603903c3430e7908704752e2');
 
     if(!homePage){
         return res.status(404).json({
@@ -43,7 +43,7 @@ exports.getHomePage = catchAsyncErrors (async(req, res,next) =>{
         servicesDescription: req.body.servicesDescription
     }
 
-    let homePage = await HomePage.findById('6038ff331155b2369c527b6e');
+    let homePage = await HomePage.findById('603903c3430e7908704752e2');
 
     if(req.body.titleBackground !== '') {
         const titleBackground_id = homePage.titleBackground.public_id;
@@ -102,7 +102,7 @@ exports.getHomePage = catchAsyncErrors (async(req, res,next) =>{
         }
     }
 
-    homePage = await HomePage.findByIdAndUpdate('6038ff331155b2369c527b6e', newHomeData, {
+    homePage = await HomePage.findByIdAndUpdate('603903c3430e7908704752e2', newHomeData, {
         new: true,
         runValidators: true,
         useFindAndModify: false
