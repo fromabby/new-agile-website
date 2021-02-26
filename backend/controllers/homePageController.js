@@ -3,9 +3,19 @@ const HomePage = require('../models/homePage')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const cloudinary = require('cloudinary')
 
+
+// Create new home details => /api/v1/newhome
+exports.newHome = catchAsyncErrors ( async(req,res,next) => {
+    const homePage = await HomePage.create(req.body);
+    res.status(201).json({
+        success: true,
+        homePage
+    })
+})
+
 // get homepage details => /api/v1/homepage
 exports.getHomePage = catchAsyncErrors (async(req, res,next) =>{
-    const homePage = await HomePage.findById('60278bf744a2ec0d50d80785');
+    const homePage = await HomePage.findById('6038ff331155b2369c527b6e');
 
     if(!homePage){
         return res.status(404).json({
@@ -33,7 +43,7 @@ exports.getHomePage = catchAsyncErrors (async(req, res,next) =>{
         servicesDescription: req.body.servicesDescription
     }
 
-    let homePage = await HomePage.findById('60278bf744a2ec0d50d80785');
+    let homePage = await HomePage.findById('6038ff331155b2369c527b6e');
 
     if(req.body.titleBackground !== '') {
         const titleBackground_id = homePage.titleBackground.public_id;
@@ -92,7 +102,7 @@ exports.getHomePage = catchAsyncErrors (async(req, res,next) =>{
         }
     }
 
-    homePage = await HomePage.findByIdAndUpdate('60278bf744a2ec0d50d80785', newHomeData, {
+    homePage = await HomePage.findByIdAndUpdate('6038ff331155b2369c527b6e', newHomeData, {
         new: true,
         runValidators: true,
         useFindAndModify: false
