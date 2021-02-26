@@ -18,17 +18,15 @@ exports.newInquiry = catchAsyncErrors( async (req, res, next) => {
         customerMessage
     } = req.body;
 
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const yyyy = today.getFullYear(); 
-    let hrs = String(today.getHours() + 8).padStart(2,'0');
-    if (hrs >=24) {
-      hrs = hrs-24
-    };
-    const minutes = String(today.getMinutes()).padStart(2,'0');
-    const todayDate = mm + '/' + dd + '/' + yyyy;
-    const todayTime = hrs +':'+ minutes;
+const today = new Date();
+
+let dd = String(today.getDate()).padStart(2, '0');
+let mm = String(today.getMonth() + 1).padStart(2, '0');
+let yyyy = today.getFullYear(); 
+let hrs = String(today.getHours()).padStart(2,'0');
+const minutes = String(today.getMinutes()).padStart(2,'0');
+const todayDate = mm + '/' + dd + '/' + yyyy;
+const todayTime = hrs +':'+ minutes;
 
     const inquiry = await Inquiry.create({
         firstName,
